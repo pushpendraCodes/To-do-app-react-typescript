@@ -9,8 +9,6 @@ const Todo = () => {
   const [todos, setTodos] = useState<todoType[]>(getTodos());
   const [updateId, setupdateId] = useState<todoType["id"]>();
 
-
-
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -58,7 +56,6 @@ const Todo = () => {
     });
     console.log(Todos, "Todos");
     setTodos(Todos);
-
   };
   return (
     <div className="h-screen">
@@ -99,18 +96,21 @@ const Todo = () => {
       </div>
 
       <div className="botton  flex flex-col gap-2 w-full">
-        <input
-          onChange={(e) => settodo(e.target.value)}
-          className=" border-dashed border-2 border-sky-500 focus:outline-none rounded-md py-1 px-2 font-sans font-semibold"
-          placeholder="New Task"
-          type="text"
-          value={todo}
-        />
-        <button
-          onClick={handelSubmit}
-          className="bg-red-600 py-2 text-white font-sans font-semibold rounded-md">
-          ADD
-        </button>
+        <form className="flex flex-col gap-2 w-full" onSubmit={handelSubmit}>
+          <input
+            onChange={(e) => settodo(e.target.value)}
+            className=" border-dashed border-2 border-sky-500 focus:outline-none rounded-md py-1 px-2 font-sans font-semibold"
+            placeholder="New Task"
+            type="text"
+            required
+            value={todo}
+          />
+          <button
+            type="submit"
+            className="bg-red-600 py-2 text-white font-sans font-semibold rounded-md">
+            ADD
+          </button>
+        </form>
       </div>
     </div>
   );
